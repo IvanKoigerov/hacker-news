@@ -1,0 +1,32 @@
+.footer {
+   background-color: #1c1b22;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.footerList {
+   list-style: none;
+   display: flex;
+   margin-bottom: 25px;
+   padding: 0;
+}
+
+.footerLink img {
+   width: 55px;
+   opacity: 0.5;
+   transition: all 0.2s;
+}
+
+.footerLink img:hover {
+   opacity: 1;
+}
+
+.footerItem:not(:last-child) {
+   margin-right: 40px;
+}
+
+.footerCorp {
+   color: white;
+   opacity: 0.4;
+}

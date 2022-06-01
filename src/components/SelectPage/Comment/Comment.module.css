@@ -1,0 +1,38 @@
+.comment {
+   background-color: #1c1b22;
+   border-radius: 10px;
+   color: #b3b3b6;
+   font-size: 1.15rem;
+   margin-bottom: 10px;
+}
+
+@media screen and (min-width:576px) {
+   .comment {
+      padding: 15px 30px;
+   }
+}
+
+@media screen and (max-width:576px) {
+   .comment {
+      padding: 10px 15px;
+   }
+}
+
+.commentHeader {
+   display: flex;
+   justify-content: space-between;
+}
+
+.commentText,
+.commentDate,
+.commentAuthor {
+   margin-top: 0;
+   margin-bottom: 10px;
+}
+
+.commentDate,
+.commentAuthor {
+   font-size: 1.3rem;
+   color: #b2b5fe77;
+   margin-top: 0;
+}
