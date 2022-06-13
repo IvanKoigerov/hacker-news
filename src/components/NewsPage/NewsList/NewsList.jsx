@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import News from '../News/News';
-import { getNewsId } from '../../../Api';
+import Loader from '../../Loader/Loader';
+import useNews from '../../../hooks/useNews';
 
 const NewsList = () => {
-
-   const [newsId, setNewsId] = useState([])
-
-   useEffect(() => {
-      getNewsId().then(data => setNewsId(data));
-   }, [])
+   const { isLoading, newsArr } = useNews({});
 
    return (
       <section className='section-news'>
-         {newsId.map((newsId) => <News id={newsId} key={newsId} />)}
+         <React.Fragment>
+            {isLoading ? (
+               <Loader />
+            ) : (
+               <React.Fragment>
+                  {newsArr.map((news) => (
+                     <News key={news.id} news={news} />
+                  ))
+                  }
+               </React.Fragment>
+            )}
+         </React.Fragment>
       </section>
-
    )
 }
 

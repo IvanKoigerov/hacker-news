@@ -7,6 +7,7 @@
 body {
   margin: 0;
   background-color: #2b2a33;
+  height: 100%;
 }
 
 @media screen and (min-width:576px) {
@@ -17,17 +18,19 @@ body {
 
 @media screen and (max-width:576px) {
   :root {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
 .App {
-  min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page {
-  /* min-height: 80vh; */
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -48,8 +51,8 @@ body {
   }
 }
 
-.link {
-  font-size: 1.3rem;
+.link,
+.comment-box a {
   margin-bottom: 10px;
   color: #b2b5fe77;
   text-decoration: none;
@@ -57,7 +60,12 @@ body {
   transition: all 0.2s;
 }
 
-.link:hover {
+.error-link {
+  font-size: 1.6rem;
+}
+
+.link:hover,
+.comment-box a:hover {
   color: #8b8dfa;
   text-decoration: underline;
 }
@@ -133,9 +141,9 @@ body {
 
 /* Select news */
 
-@media screen and (min-width:992px) {
+@media screen and (min-width:1200px) {
   .section {
-    width: 1100px;
+    width: 1200px;
   }
 
   .section:not(:last-child) {
@@ -143,7 +151,7 @@ body {
   }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width:1200px) {
   .section {
     width: 100%;
   }
@@ -153,7 +161,8 @@ body {
   }
 }
 
-.select-news {
+.select-news,
+.error-box {
   background-color: #1c1b22;
   border-radius: 10px;
   padding: 15px 20px;
@@ -173,12 +182,131 @@ body {
 
 @media screen and (min-width:576px) {
   .comment-box .comment-box {
-    margin-left: 25px;
+    margin-left: 20px;
   }
 }
 
 @media screen and (max-width:576px) {
   .comment-box .comment-box {
-    margin-left: 15px;
+    margin-left: 10px;
+  }
+}
+
+.comment-box pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.comment-box code {
+  display: block;
+  font-size: 0.85rem;
+}
+
+
+.comment p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.comment-box_title {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.reload {
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.reload img {
+  width: 30px;
+}
+
+.reload:hover {
+  opacity: 1;
+}
+
+/* .hiddd {
+  display: none;
+} */
+
+.childCom-show {
+  animation: showComment 0.5s linear;
+}
+
+.childCom-hide {
+  animation: hideComment 0.5s linear;
+}
+
+@keyframes showComment {
+  0% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hideComment {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+}
+
+.rotate-right {
+  transform: rotate(-180deg);
+  animation: rightRotate 0.3s linear;
+}
+
+.rotate-left {
+  transform: rotate(0);
+  animation: leftRotate 0.3s linear;
+}
+
+.left {
+  transform: rotate(0);
+}
+
+.right {
+  transform: rotate(-180deg);
+}
+
+@keyframes rightRotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes leftRotate {
+  0% {
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
   }
 }

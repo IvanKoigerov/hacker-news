@@ -1,26 +1,24 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
 import './App.css';
-// import SelectNews from './components/SelectPage/SelectNews/SelectNews';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Loader from './components/Loader/Loader';
-// import Comment from './components/SelectPage/Comment/Comment';
-// import News from './components/NewsPage/News/News';
-// import NewsPage from './components/NewsPage/NewsPage';
-import NewsList from './components/NewsPage/NewsList/NewsList';
-// import SelectPage from './components/SelectPage/SelectPage';
+import Layout from './components/Layout/Layout';
+import NewsPage from './page/NewsPage';
+import SelectPage from './page/SelectPage';
+import ErrorPage from './page/ErrorPage'
 
 function App() {
   return (
     <div className="App">
-      <Header />
 
-      <main className='page'>
-        <Loader />
-        <NewsList />
-      </main>
+      <Routes>
+        <Route path='/' element={<Layout />} >
+          <Route index element={<NewsPage />} />
+          <Route path='item/:id' element={<SelectPage />} />
+          <Route path='*' element={<ErrorPage />} />
+        </Route>
+      </Routes>
 
-      <Footer />
     </div >
   );
 }

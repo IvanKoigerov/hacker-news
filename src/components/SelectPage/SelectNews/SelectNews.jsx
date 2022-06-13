@@ -1,16 +1,23 @@
 import React from 'react'
 //import classes from './SelectNews.module.css'
 
-const SelectNews = (props) => {
+const SelectNews = ({ news: { id, by, title, time, score, url } }) => {
+   const date = new Date(time * 1000);
    return (
       <section className='section'>
          <div className='select-news'>
-            <h1 className='select-title title'>{props.title}</h1>
-            <p className='text-news'>{props.author}</p>
-            <a className='text-news link' href={props.link}>{props.link}</a>
+            <h1 className='select-title title'>{title}</h1>
+            <p className='text-news'>{by}</p>
+            <a className='text-news link' href={url}>{url}</a>
             <div className='news-footer'>
-               <p className='text-news'>{props.point}</p>
-               <p className='text-news'>{props.date}</p>
+               <p className='text-news'>{score} points</p>
+               <p className='text-news'>
+                  {("0" + date.getDate()).substr(-2) +
+                     "." + ("0" + (date.getMonth() + 1)).substr(-2) +
+                     "." + ("0" + date.getFullYear()).substr(-2) +
+                     " " + ("0" + date.getHours()).substr(-2) +
+                     ":" + ("0" + date.getMinutes()).substr(-2)}
+               </p>
             </div>
          </div>
       </section>
