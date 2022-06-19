@@ -1,13 +1,17 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import './style/App.css';
 
-import './App.css';
 import Layout from './components/Layout/Layout';
 import NewsPage from './page/NewsPage';
 import SelectPage from './page/SelectPage';
 import ErrorPage from './page/ErrorPage'
 
+
+
+
 function App() {
+
+
   return (
     <div className="App">
 

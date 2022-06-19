@@ -1,7 +1,8 @@
 import React from 'react'
-//import classes from './SelectNews.module.css'
 
-const SelectNews = ({ news: { id, by, title, time, score, url } }) => {
+import { INews } from '../../../models/INews';
+
+const SelectNews: React.FC<INews> = ({ news: { by, title, time, score, url } }) => {
    const date = new Date(time * 1000);
    return (
       <section className='section'>

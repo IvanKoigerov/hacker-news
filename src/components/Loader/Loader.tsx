@@ -1,8 +1,6 @@
-
-import React from 'react'
 import classes from './Loader.module.css'
 
-const Loader = (props) => {
+const Loader: React.FC = () => {
    return (
       <div className={classes.boxLoader}>
          <div className={classes.loader}></div>

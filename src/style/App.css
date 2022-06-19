@@ -236,11 +236,11 @@ body {
 } */
 
 .childCom-show {
-  animation: showComment 0.5s linear;
+  animation: showComment 0.4s linear;
 }
 
 .childCom-hide {
-  animation: hideComment 0.5s linear;
+  animation: hideComment 0.4s linear;
 }
 
 @keyframes showComment {
@@ -249,11 +249,8 @@ body {
     transform: translateY(-15%);
   }
 
-  50% {
-    opacity: 1;
-  }
-
   100% {
+    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -261,9 +258,6 @@ body {
 @keyframes hideComment {
   0% {
     transform: translateY(0);
-  }
-
-  50% {
     opacity: 1;
   }
 

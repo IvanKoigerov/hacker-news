@@ -1,10 +1,10 @@
-import React from 'react'
-import vk from './vk.svg'
-import github from './github.svg'
-import tg from './tg.svg'
 import classes from './Footer.module.css'
 
-const Footer = () => {
+import github from './github.svg';
+import vk from './vk.svg';
+import tg from './tg.svg';
+
+const Footer: React.FC = () => {
    return (
       <footer className={classes.footer}>
          <ul className={classes.footerList}>

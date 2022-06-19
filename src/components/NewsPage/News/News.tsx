@@ -1,8 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { INews } from '../../../models/INews';
 
-const News = ({ news: { id, by, title, time, score } }) => {
+
+const News: React.FC<INews> = ({ news: { id, by, title, time, score, dead, deleted } }) => {
    const date = new Date(time * 1000);
+
+   if (dead || deleted) {
+      return <></>
+   }
+
+
    return (
       <Link to={"item/" + id} className='news'>
          <h1 className='news-title title'>{title}</h1>

@@ -4,13 +4,17 @@ import { CSSTransition } from 'react-transition-group';
 import classes from './Comment.module.css'
 import useComment from '../../../../hooks/useComment';
 
-const Comment = ({ comment: { id, by, text, time, dead, kids, deleted } }) => {
+import { IComments } from '../../../../models/IComments';
+
+const Comment: React.FC<IComments> = ({ comment: { id, by, text, time, dead, kids, deleted } }) => {
    const date = new Date(time * 1000);
    const { commentArr } = useComment(kids);
    const [commentVisible, setCommentVisible] = useState(false);
 
    if (dead || deleted) {
-      return;
+      return (
+         <></>
+      );
    }
 
 
@@ -44,12 +48,12 @@ const Comment = ({ comment: { id, by, text, time, dead, kids, deleted } }) => {
             </p>
          </div >
          {kids != null ?
-            (<div className='childCom' id={id}>
-               {commentArr.map((comment) => (
+            (<div className='childCom'>
+               {commentArr && commentArr.map((comment: any) => (
                   <CSSTransition
                      in={commentVisible}
                      key={comment.id}
-                     timeout={490}
+                     timeout={390}
                      classNames={{
                         enterActive: 'childCom-show',
                         enterDone: 'childCom',

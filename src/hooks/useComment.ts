@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getComments } from '../Api';
-const useComment = (kids) => {
-   const [commentArr, setComment] = useState([]);
+import { getComments } from '../Api/Api';
+const useComment = (kids: any[]) => {
+   const [commentArr, setComment] = useState<any>([]);
    const [isLoading, setIsLoading] = useState(false);
    useEffect(() => {
       if (kids != null) {

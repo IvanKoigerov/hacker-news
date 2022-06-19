@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { getNewsArr } from '../Api';
+import { getNewsArr } from '../Api/Api';
 const useNews = () => {
-   const [newsArr, setNews] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
+   const [newsArr, setNews] = useState<any>([]);
+   const [isLoading, setIsLoading] = useState<boolean>(false);
 
    useEffect(() => {
       setIsLoading(true);

@@ -4,7 +4,7 @@ export const API_URL = 'https://hacker-news.firebaseio.com/v0';
 export const NEW_URL = `${API_URL}/newstories.json`;
 export const NEWS_URL = `${API_URL}/item/`;
 
-export const getNews = async (newsId) => {
+export const getNews = async (newsId: string | undefined) => {
    try {
       const theNews = await axios.get(`${NEWS_URL + newsId}.json`).then(({ data }) => data);
       return theNews;
@@ -25,7 +25,7 @@ export const getNewsArr = async () => {
    }
 }
 
-export const getComments = async (kids) => {
+export const getComments = async (kids: any[]) => {
    try {
       const comment = await Promise.all(kids.map(getNews));
       return comment;

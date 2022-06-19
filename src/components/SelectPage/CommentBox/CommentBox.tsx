@@ -4,7 +4,14 @@ import Comment from './Comment/Comment';
 import Loader from '../../Loader/Loader'
 import reload from './reload.svg'
 
-const CommentBox = ({ news: { kids, descendants } }) => {
+interface NewsProps {
+   news: {
+      kids: any[],
+      descendants: string
+   }
+}
+
+const CommentBox: React.FC<NewsProps> = ({ news: { kids, descendants } }) => {
    const { isLoading, commentArr } = useComment(kids);
 
    return (
@@ -18,7 +25,7 @@ const CommentBox = ({ news: { kids, descendants } }) => {
                      <h1 className='comment-title title'> Comments {descendants}</h1>
                      <button className='reload'><img src={reload} alt="" /></button>
                   </div>
-                  {commentArr.map((comment) => (
+                  {commentArr && commentArr.map((comment: any) => (
                      <Comment key={comment.id} comment={comment} />
                   ))
                   }
