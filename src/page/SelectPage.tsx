@@ -1,34 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
 
 import SelectNews from '../components/SelectPage/SelectNews/SelectNews';
 import CommentBox from '../components/SelectPage/CommentBox/CommentBox';
 import ErrorPage from './ErrorPage';
+import { newsApi } from '../services/NewsService';
+import Loader from '../components/Loader/Loader';
 
-import { getNews } from '../Api/Api';
 
 
 
-const SelectPage = () => {
+
+const SelectPage: React.FC = () => {
    const { id } = useParams();
-
-   const [news, setNews] = useState<any>([]);
-   useEffect(() => {
-      getNews(id).then(data => setNews(data));
-   }, [])
-
+   const { data: comment, isLoading } = newsApi.useFetchNewsQuery(id, {
+      pollingInterval: 60000
+   });
    //31592934
 
-   if (news == null || news.type !== 'story' || news.dead || news.deleted) {
-      return (
-         <ErrorPage />
-      )
-   }
 
    return (
+
+
       <main className='page'>
-         <SelectNews news={news} />
-         <CommentBox news={news} />
+         {isLoading ? (<Loader />)
+            : comment == null || comment.type !== 'link' || comment.dead || comment.deleted ? (<ErrorPage />)
+               : <><SelectNews news={comment} /><CommentBox comment={comment} /></>
+         }
+
       </main>
    )
 }

@@ -1,11 +1,17 @@
 export interface IComments {
-   comment: {
-      id: number,
-      by: string,
-      text: string,
-      time: number,
-      dead: boolean,
-      kids: any[],
-      deleted: boolean
-   }
+   id: string,
+   user: string,
+   title: string,
+   points: string,
+   url: string,
+   content: string,
+   time: number,
+   type: string,
+   dead: boolean,
+   deleted: boolean,
+   comments: IComments[],
+   comments_count: number
+
 }
+
+

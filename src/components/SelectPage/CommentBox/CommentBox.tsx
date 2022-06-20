@@ -1,37 +1,25 @@
 import React from 'react'
-import useComment from '../../../hooks/useComment';
+
 import Comment from './Comment/Comment';
-import Loader from '../../Loader/Loader'
 import reload from './reload.svg'
 
-interface NewsProps {
-   news: {
-      kids: any[],
-      descendants: string
-   }
+import { IComments } from '../../../models/IComments';
+
+interface CommentProps {
+   comment: IComments
 }
 
-const CommentBox: React.FC<NewsProps> = ({ news: { kids, descendants } }) => {
-   const { isLoading, commentArr } = useComment(kids);
-
+const CommentBox: React.FC<CommentProps> = ({ comment: { comments, comments_count } }) => {
    return (
       <section className='section'>
-         <React.Fragment>
-            {isLoading ? (
-               <Loader />
-            ) : (
-               <React.Fragment>
-                  <div className='comment-box_title'>
-                     <h1 className='comment-title title'> Comments {descendants}</h1>
-                     <button className='reload'><img src={reload} alt="" /></button>
-                  </div>
-                  {commentArr && commentArr.map((comment: any) => (
-                     <Comment key={comment.id} comment={comment} />
-                  ))
-                  }
-               </React.Fragment>
-            )}
-         </React.Fragment>
+         <div className='comment-box_title'>
+            <h1 className='comment-title title'> Comments {comments_count}</h1>
+            <button className='reload'><img src={reload} alt="" /></button>
+         </div>
+         {comments && comments.map((comment: any) => (
+            <Comment key={comment.id} comment={comment} />
+         ))
+         }
       </section >
    )
 }

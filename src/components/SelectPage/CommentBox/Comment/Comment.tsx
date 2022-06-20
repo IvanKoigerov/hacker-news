@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { CSSTransition } from 'react-transition-group';
 
 import classes from './Comment.module.css'
-import useComment from '../../../../hooks/useComment';
 
 import { IComments } from '../../../../models/IComments';
 
-const Comment: React.FC<IComments> = ({ comment: { id, by, text, time, dead, kids, deleted } }) => {
+interface CommentProps {
+   comment: IComments
+}
+
+const Comment: React.FC<CommentProps> = ({ comment: { id, user, content, time, dead, comments, deleted, comments_count } }) => {
    const date = new Date(time * 1000);
-   const { commentArr } = useComment(kids);
    const [commentVisible, setCommentVisible] = useState(false);
 
    if (dead || deleted) {
@@ -23,7 +25,7 @@ const Comment: React.FC<IComments> = ({ comment: { id, by, text, time, dead, kid
          <div className={classes.comment} >
             <div className={classes.commentHeader}>
                <p className={classes.commentAuthor}>
-                  {kids != null ?
+                  {comments_count !== 0 ?
                      (<CSSTransition in={commentVisible} timeout={300}
                         classNames={{
                            enterActive: 'rotate-right',
@@ -35,7 +37,7 @@ const Comment: React.FC<IComments> = ({ comment: { id, by, text, time, dead, kid
                         <button className={classes.openCom} onClick={() => { setCommentVisible(!commentVisible); }}>▼</button>
                      </CSSTransition>)
                      : (<></>)}
-                  {by}
+                  {user}
                </p>
                <p className={classes.commentDate}>
                   {("0" + date.getDate()).substr(-2) +
@@ -44,12 +46,12 @@ const Comment: React.FC<IComments> = ({ comment: { id, by, text, time, dead, kid
                      " " + ("0" + date.getHours()).substr(-2) +
                      ":" + ("0" + date.getMinutes()).substr(-2)}</p>
             </div>
-            <p className={classes.commentText} dangerouslySetInnerHTML={{ __html: text }}>
+            <p className={classes.commentText} dangerouslySetInnerHTML={{ __html: content }}>
             </p>
          </div >
-         {kids != null ?
+         {comments_count !== 0 ?
             (<div className='childCom'>
-               {commentArr && commentArr.map((comment: any) => (
+               {comments && comments.map((comment: any) => (
                   <CSSTransition
                      in={commentVisible}
                      key={comment.id}

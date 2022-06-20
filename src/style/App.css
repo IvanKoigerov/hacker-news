@@ -1,14 +1,4 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background-color: #2b2a33;
-  height: 100%;
-}
+/* Шрифт */
 
 @media screen and (min-width:576px) {
   :root {
@@ -21,6 +11,8 @@ body {
     font-size: 14px;
   }
 }
+
+/* Common */
 
 .App {
   position: relative;
@@ -51,24 +43,7 @@ body {
   }
 }
 
-.link,
-.comment-box a {
-  margin-bottom: 10px;
-  color: #b2b5fe77;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-}
 
-.error-link {
-  font-size: 1.6rem;
-}
-
-.link:hover,
-.comment-box a:hover {
-  color: #8b8dfa;
-  text-decoration: underline;
-}
 
 
 /* NEWS */
@@ -119,8 +94,8 @@ body {
 }
 
 .text-news {
-  font-size: 1.3rem;
-  color: #b2b5fe77;
+  font-size: 1.2rem;
+  color: #b2b5fed4;
   margin-top: 0;
 }
 
@@ -180,60 +155,29 @@ body {
   margin-left: 20px;
 }
 
-@media screen and (min-width:576px) {
-  .comment-box .comment-box {
-    margin-left: 20px;
-  }
-}
-
-@media screen and (max-width:576px) {
-  .comment-box .comment-box {
-    margin-left: 10px;
-  }
-}
-
-.comment-box pre {
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-}
-
-.comment-box code {
-  display: block;
-  font-size: 0.85rem;
-}
-
-
-.comment p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
 .comment-box_title {
   display: flex;
   justify-content: space-between;
   padding-right: 20px;
 }
 
-.reload {
-  padding: 5px;
-  border: none;
-  background-color: transparent;
-  transition: all 0.3s;
-  opacity: 0.7;
-  cursor: pointer;
+.link,
+.comment-box a {
+  margin-bottom: 10px;
+  color: #b2b5fe77;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
 }
 
-.reload img {
-  width: 30px;
+.link:hover,
+.comment-box a:hover {
+  color: #8b8dfa;
+  text-decoration: underline;
 }
 
-.reload:hover {
-  opacity: 1;
-}
 
-/* .hiddd {
-  display: none;
-} */
+/* Анимация комментария */
 
 .childCom-show {
   animation: showComment 0.4s linear;
@@ -266,6 +210,9 @@ body {
     transform: translateY(-15%);
   }
 }
+
+
+/* Анимация поворота стрелочки */
 
 .rotate-right {
   transform: rotate(-180deg);
@@ -303,4 +250,63 @@ body {
   100% {
     transform: rotate(-360deg);
   }
+}
+
+/* Отступы комментариев */
+
+@media screen and (min-width:576px) {
+  .comment-box .comment-box {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .comment-box .comment-box {
+    margin-left: 10px;
+  }
+}
+
+
+/* Изменение стилей */
+
+.comment pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.comment code {
+  display: block;
+  font-size: 0.85rem;
+}
+
+
+.comment p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+
+/* Кнопка */
+
+.reload {
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.reload img {
+  width: 30px;
+}
+
+.reload:hover {
+  opacity: 1;
+}
+
+/* Error page*/
+
+.error-link {
+  font-size: 1.6rem;
 }

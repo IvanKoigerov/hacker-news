@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { INews } from '../../../models/INews';
 
 
-const News: React.FC<INews> = ({ news: { id, by, title, time, score, dead, deleted } }) => {
+const News: React.FC<INews> = ({ news: { id, user, title, time, points, dead, deleted } }) => {
    const date = new Date(time * 1000);
 
    if (dead || deleted) {
@@ -14,9 +14,9 @@ const News: React.FC<INews> = ({ news: { id, by, title, time, score, dead, delet
    return (
       <Link to={"item/" + id} className='news'>
          <h1 className='news-title title'>{title}</h1>
-         <p className='text-news news-author'>{by}</p>
+         <p className='text-news news-author'>{user}</p>
          <div className='news-footer'>
-            <p className='text-news news-point'>{score} points</p>
+            <p className='text-news news-point'>{points} points</p>
             <p className='text-news news-date'>
                {("0" + date.getDate()).substr(-2) +
                   "." + ("0" + (date.getMonth() + 1)).substr(-2) +

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-const ErrorPage = () => {
+const ErrorPage: React.FC = () => {
    return (
-      <main className='page'>
+      <main className="page">
          <section className='section'>
             <div className="error-box">
                <h1 className="title">Page Not Found</h1>
@@ -11,6 +11,7 @@ const ErrorPage = () => {
             </div>
          </section>
       </main>
+
    )
 }
 

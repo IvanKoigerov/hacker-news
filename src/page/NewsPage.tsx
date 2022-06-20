@@ -1,7 +1,7 @@
 import React from "react";
 import NewsList from "../components/NewsPage/NewsList/NewsList";
 
-const NewsPage = () => {
+const NewsPage: React.FC = () => {
    return (
       <main className='page'>
          <NewsList />

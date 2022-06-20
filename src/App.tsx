@@ -10,8 +10,6 @@ import ErrorPage from './page/ErrorPage'
 
 
 function App() {
-
-
   return (
     <div className="App">
 
