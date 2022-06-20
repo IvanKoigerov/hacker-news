@@ -3,7 +3,6 @@ import { newsApi } from '../services/NewsService';
 
 const useNews = () => {
    const [newsArrr, setNews] = useState<any>([]);
-   // const [isLoading, setIsLoading] = useState<boolean>(false);
    const { data: newsArr1, isLoading: load1 } = newsApi.useFetchAllNewsQuery(1, {
       pollingInterval: 60000
    });
