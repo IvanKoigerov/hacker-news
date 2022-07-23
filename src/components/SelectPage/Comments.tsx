@@ -1,81 +1,61 @@
 import React, { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
-
-import { IComments } from '../../../../models/IComments';
+import { format } from 'date-fns';
+import { IComments } from '../../models/IComments';
 import styled from 'styled-components';
-import { CommentHeader } from '../CommentBox';
+import { CommentHeader } from './CommentBox';
 
 interface CommentProps {
   comment: IComments;
+  className?: string;
 }
 
 const Comments: React.FC<CommentProps> = ({
   comment: { user, content, time, dead, comments, deleted, comments_count },
+  className,
 }) => {
   const date = new Date(time * 1000);
-  const [commentVisible, setCommentVisible] = useState(false);
+  const [commentVisible, setCommentVisible] = useState<boolean>();
+
+  const handleVisible = () => {
+    if (commentVisible === undefined) {
+      setCommentVisible(true);
+    }
+    setCommentVisible(!commentVisible);
+  };
 
   if (dead || deleted) {
     return null;
   }
 
   return (
-    <CommentBox>
+    <CommentBox className={className}>
       <Comment>
         <CommentHeader>
           <CommentTitle>
             {comments_count !== 0 ? (
-              <CSSTransition
-                in={commentVisible}
-                timeout={300}
-                classNames={{
-                  enterActive: 'rotate-right',
-                  exitActive: 'rotate-left',
-                  enterDone: 'right',
-                  exitDone: 'left',
+              <OpenComment
+                onClick={() => {
+                  handleVisible();
                 }}
+                className={commentVisible !== undefined ? (commentVisible ? 'rotate-right' : 'rotate-left') : ''}
               >
-                <OpenComment
-                  onClick={() => {
-                    setCommentVisible(!commentVisible);
-                  }}
-                >
-                  ▼
-                </OpenComment>
-              </CSSTransition>
+                ▼
+              </OpenComment>
             ) : null}
             {user}
           </CommentTitle>
-          <CommentTitle>
-            {('0' + date.getDate()).substr(-2) +
-              '.' +
-              ('0' + (date.getMonth() + 1)).substr(-2) +
-              '.' +
-              ('0' + date.getFullYear()).substr(-2) +
-              ' ' +
-              ('0' + date.getHours()).substr(-2) +
-              ':' +
-              ('0' + date.getMinutes()).substr(-2)}
-          </CommentTitle>
+          <CommentTitle>{format(date, 'dd.MM.yy HH:mm')}</CommentTitle>
         </CommentHeader>
         <p dangerouslySetInnerHTML={{ __html: content }}></p>
       </Comment>
       {comments_count !== 0
         ? comments &&
           comments.map((comment: IComments) => (
-            <CSSTransition
-              in={commentVisible}
+            <Comments
+              className={commentVisible !== undefined ? (commentVisible ? 'show' : 'hide') : 'hidden'}
               key={comment.id}
-              timeout={390}
-              classNames={{
-                enterActive: 'show',
-                exitActive: 'hide',
-              }}
-              mountOnEnter
-              unmountOnExit
-            >
-              <Comments key={comment.id} comment={comment} />
-            </CSSTransition>
+              comment={comment}
+            />
           ))
         : null}
     </CommentBox>
@@ -83,9 +63,9 @@ const Comments: React.FC<CommentProps> = ({
 };
 
 const Comment = styled.div`
-  background-color: #1c1b22;
+  background-color: ${(props) => props.theme.primary};
   border-radius: 10px;
-  color: #b3b3b6;
+  color: ${(props) => props.theme.commentText};
   font-size: 0.9rem;
   margin-bottom: 10px;
 
@@ -104,18 +84,19 @@ const Comment = styled.div`
 
 const CommentTitle = styled.p`
   font-size: 1.2rem;
-  color: #b2b5fe77;
+  color: ${(props) => props.theme.commentTitle};
 `;
 
 const OpenComment = styled.button`
   font-size: 1.2rem;
-  color: #b2b5fe77;
+  color: ${(props) => props.theme.link};
   background-color: transparent;
   border: none;
   transition: all 0.2s;
+  cursor: pointer;
 
   &:hover {
-    color: #8b8dfa;
+    color: ${(props) => props.theme.linkHover};
   }
 
   &.rotate-right {
@@ -183,18 +164,38 @@ const CommentBox = styled.div`
     margin-bottom: 10px;
   }
 
+  a {
+    margin-bottom: 10px;
+    color: ${(props) => props.theme.link};
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+
+    &:hover {
+      color: ${(props) => props.theme.linkHover};
+      text-decoration: underline;
+    }
+  }
+
   &.show {
     animation: showComment 0.4s linear;
   }
 
   &.hide {
     animation: hideComment 0.4s linear;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  &.hidden {
+    display: none;
   }
 
   @keyframes showComment {
     0% {
       opacity: 0;
-      transform: translateY(-15%);
+      transform: translateY(-10%);
     }
     100% {
       opacity: 1;
@@ -206,10 +207,12 @@ const CommentBox = styled.div`
     0% {
       transform: translateY(0);
       opacity: 1;
+      height: 100%;
+      visibility: visible;
     }
     100% {
       opacity: 0;
-      transform: translateY(-15%);
+      transform: translateY(-10%);
     }
   }
 `;

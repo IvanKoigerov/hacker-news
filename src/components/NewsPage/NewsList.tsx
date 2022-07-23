@@ -1,8 +1,8 @@
 import React from 'react';
-import News from '../News';
-import Loader from '../../Loader/Loader';
-import useNews from '../../../hooks/useNews';
-import { INews } from '../../../models/INews';
+import News from './News';
+import Loader from '../Loader/Loader';
+import useNews from '../../hooks/useNews';
+import { INews } from '../../models/INews';
 import styled from 'styled-components';
 
 const NewsList = () => {

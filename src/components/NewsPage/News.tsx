@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { INews } from '../../../models/INews';
-import TextNews from '../../TextNews';
+import { INews } from '../../models/INews';
+import TextNews from '../TextNews';
 import styled from 'styled-components';
-import FooterNews from '../../FooterNews';
-import Title from '../../Title';
+import FooterNews from '../FooterNews';
+import Title from '../Title';
+import { format } from 'date-fns';
 
 interface NewsProps {
   news: INews;
@@ -23,24 +24,14 @@ const News: React.FC<NewsProps> = ({ news: { id, user, title, time, points, dead
       <TextNews color="#fff">{user}</TextNews>
       <FooterNews>
         <TextNews>{points} points</TextNews>
-        <TextNews>
-          {('0' + date.getDate()).substr(-2) +
-            '.' +
-            ('0' + (date.getMonth() + 1)).substr(-2) +
-            '.' +
-            ('0' + date.getFullYear()).substr(-2) +
-            ' ' +
-            ('0' + date.getHours()).substr(-2) +
-            ':' +
-            ('0' + date.getMinutes()).substr(-2)}
-        </TextNews>
+        <TextNews>{format(date, 'dd.MM.yy HH:mm')}</TextNews>
       </FooterNews>
     </NewsBox>
   );
 };
 
 const NewsBox = styled.div`
-  background-color: #1c1b22;
+  background-color: ${(props) => props.theme.primary};
   border-radius: 10px;
   padding: 15px 20px;
   display: flex;

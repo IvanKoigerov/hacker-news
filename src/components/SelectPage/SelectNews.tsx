@@ -1,10 +1,11 @@
 import React from 'react';
-import { IComments } from '../../../models/IComments';
-import Section from '../../Section';
-import TextNews from '../../TextNews';
-import FooterNews from '../../FooterNews';
+import { IComments } from '../../models/IComments';
+import Section from '../Section';
+import TextNews from '../TextNews';
+import FooterNews from '../FooterNews';
 import styled from 'styled-components';
-import Title from '../../Title';
+import Title from '../Title';
+import { format } from 'date-fns';
 
 interface SelectNewsProps {
   news: IComments;
@@ -26,25 +27,15 @@ const SelectNews: React.FC<SelectNewsProps> = ({ news: { user, title, time, poin
         </TextNews>
         <FooterNews>
           <TextNews>{points} points</TextNews>
-          <TextNews>
-            {('0' + date.getDate()).substr(-2) +
-              '.' +
-              ('0' + (date.getMonth() + 1)).substr(-2) +
-              '.' +
-              ('0' + date.getFullYear()).substr(-2) +
-              ' ' +
-              ('0' + date.getHours()).substr(-2) +
-              ':' +
-              ('0' + date.getMinutes()).substr(-2)}
-          </TextNews>
+          <TextNews>{format(date, 'dd.MM.yy HH:mm')}</TextNews>
         </FooterNews>
       </WrapperNews>
     </Section>
   );
 };
 
-const WrapperNews = styled.div`
-  background-color: #1c1b22;
+export const WrapperNews = styled.div`
+  background-color: ${(props) => props.theme.primary};
   border-radius: 10px;
   padding: 15px 20px;
 `;

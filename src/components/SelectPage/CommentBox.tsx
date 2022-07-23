@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { IComments } from '../../../models/IComments';
-import Reload from '../../Reload/Reload';
-import Section from '../../Section';
-import Title from '../../Title';
+import { IComments } from '../../models/IComments';
+import Reload from '../Reload/Reload';
+import Section from '../Section';
+import Title from '../Title';
 import styled from 'styled-components';
-import Comments from './Comment/Comments';
+import Comments from './Comments';
 
 interface CommentProps {
   comment: IComments;
