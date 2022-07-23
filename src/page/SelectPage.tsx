@@ -6,9 +6,9 @@ import CommentBox from '../components/SelectPage/CommentBox';
 import ErrorPage from './ErrorPage';
 import { newsApi } from '../services/NewsService';
 import Loader from '../components/Loader/Loader';
-import { IComments } from '../models/IComments';
+import { CommentsData } from '../models/CommentsData';
 
-const isBadComment = (comment: IComments | undefined) => {
+const isBadComment = (comment: CommentsData | undefined) => {
   return comment == null || (comment.type !== 'link' && comment.type !== 'poll') || comment.dead || comment.deleted;
 };
 

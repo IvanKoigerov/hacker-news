@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { IComments } from '../../models/IComments';
+import { CommentsData } from '../../models/CommentsData';
 import styled from 'styled-components';
 import { CommentHeader } from './CommentBox';
 
-interface CommentProps {
-  comment: IComments;
+interface CommentsProps {
+  comment: CommentsData;
   className?: string;
 }
 
-const Comments: React.FC<CommentProps> = ({
+const Comments: React.FC<CommentsProps> = ({
   comment: { user, content, time, dead, comments, deleted, comments_count },
   className,
 }) => {
@@ -50,7 +50,7 @@ const Comments: React.FC<CommentProps> = ({
       </Comment>
       {comments_count !== 0
         ? comments &&
-          comments.map((comment: IComments) => (
+          comments.map((comment: CommentsData) => (
             <Comments
               className={commentVisible !== undefined ? (commentVisible ? 'show' : 'hide') : 'hidden'}
               key={comment.id}

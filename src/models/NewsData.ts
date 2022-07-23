@@ -1,4 +1,4 @@
-export interface INews {
+export interface NewsData {
   id: string;
   user: string;
   time: number;

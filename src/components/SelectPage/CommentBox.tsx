@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IComments } from '../../models/IComments';
+import { CommentsData } from '../../models/CommentsData';
 import Reload from '../Reload/Reload';
 import Section from '../Section';
 import Title from '../Title';
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import Comments from './Comments';
 
 interface CommentProps {
-  comment: IComments;
+  comment: CommentsData;
   refetch: () => void;
 }
 
@@ -19,7 +19,7 @@ const CommentBox: React.FC<CommentProps> = ({ comment: { comments, comments_coun
         <Title> Comments {comments_count}</Title>
         <Reload />
       </CommentHeader>
-      {comments && comments.map((comment: IComments) => <Comments key={comment.id} comment={comment} />)}
+      {comments && comments.map((comment: CommentsData) => <Comments key={comment.id} comment={comment} />)}
     </Section>
   );
 };

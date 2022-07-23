@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { INews } from '../../models/INews';
+import { NewsData } from '../../models/NewsData';
 import TextNews from '../TextNews';
 import styled from 'styled-components';
 import FooterNews from '../FooterNews';
@@ -8,7 +8,7 @@ import Title from '../Title';
 import { format } from 'date-fns';
 
 interface NewsProps {
-  news: INews;
+  news: NewsData;
 }
 
 const News: React.FC<NewsProps> = ({ news: { id, user, title, time, points, dead, deleted } }) => {

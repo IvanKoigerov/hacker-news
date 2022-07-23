@@ -1,5 +1,5 @@
 import React from 'react';
-import { IComments } from '../../models/IComments';
+import { CommentsData } from '../../models/CommentsData';
 import Section from '../Section';
 import TextNews from '../TextNews';
 import FooterNews from '../FooterNews';
@@ -8,7 +8,7 @@ import Title from '../Title';
 import { format } from 'date-fns';
 
 interface SelectNewsProps {
-  news: IComments;
+  news: CommentsData;
 }
 
 const SelectNews: React.FC<SelectNewsProps> = ({ news: { user, title, time, points, url, content } }) => {
