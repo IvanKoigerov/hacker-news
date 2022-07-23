@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { newsApi } from '../services/NewsService';
-import { INews } from '../models/INews';
+import { NewsData } from '../models/NewsData';
 
 const useNews = () => {
-  const [newsArr, setNews] = useState<INews[]>();
+  const [newsArr, setNews] = useState<NewsData[]>();
   const { data: newsArr1, isLoading: load1 } = newsApi.useFetchAllNewsQuery(1, {
     pollingInterval: 60000,
   });
@@ -18,7 +18,7 @@ const useNews = () => {
   });
 
   useEffect(() => {
-    if (newsArr3 && newsArr2 && newsArr1 && newsArr4) {
+    if (newsArr1 && newsArr2 && newsArr3 && newsArr4) {
       setNews(newsArr1.concat(newsArr2, newsArr3, newsArr4.slice(0, 10)));
     }
   }, [newsArr1, newsArr2, newsArr3, newsArr4]);
