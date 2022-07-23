@@ -26,6 +26,19 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+
+  @media screen and (min-width: 576px) {
+    :root {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    :root {
+      font-size: 13px;
+    }
+  }
+
   html {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
