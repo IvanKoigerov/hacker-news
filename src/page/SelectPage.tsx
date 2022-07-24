@@ -1,16 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-import SelectNews from '../components/SelectPage/SelectNews';
-import CommentBox from '../components/SelectPage/CommentBox';
-import ErrorPage from './ErrorPage';
 import { newsApi } from '../services/NewsService';
-import Loader from '../components/Loader/Loader';
-import { CommentsData } from '../models/CommentsData';
-
-const isBadComment = (comment: CommentsData | undefined) => {
-  return comment == null || (comment.type !== 'link' && comment.type !== 'poll') || comment.dead || comment.deleted;
-};
+import Header from '../components/Header/Header';
+import MainWrapper from '../components/MainWrapper';
+import Footer from '../components/Footer/Footer';
+import Select from '../components/SelectPage/Select';
 
 const SelectPage = () => {
   const { id } = useParams();
@@ -18,18 +12,31 @@ const SelectPage = () => {
     data: comment,
     isLoading,
     refetch,
+    isFetching,
   } = newsApi.useFetchNewsQuery(id!, {
     pollingInterval: 60000,
   });
 
+  const [load, setLoad] = useState(false);
+
+  const handleLoad = () => {
+    refetch();
+    setLoad(true);
+  };
+
+  useEffect(() => {
+    setLoad(false);
+  }, [isFetching]);
+
   //31592934 удалю, когда почти все готово будет
 
-  if (isLoading) return <Loader />;
-  if (isBadComment(comment)) return <ErrorPage />;
   return (
     <>
-      <SelectNews news={comment!} />
-      <CommentBox comment={comment!} refetch={refetch} />
+      <Header refetch={handleLoad} />
+      <MainWrapper>
+        <Select isFetching={isLoading || (isFetching && load)} comment={comment!} />
+      </MainWrapper>
+      <Footer />
     </>
   );
 };

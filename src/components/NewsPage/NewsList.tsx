@@ -1,15 +1,21 @@
 import React from 'react';
 import News from './News';
 import Loader from '../Loader/Loader';
-import useNews from '../../hooks/useNews';
 import { NewsData } from '../../models/NewsData';
 import styled from 'styled-components';
 
-const NewsList = () => {
-  const { newsArr, isLoading } = useNews();
+interface NewsListProps {
+  isLoading?: boolean;
+  newsArr: NewsData[];
+}
 
-  if (isLoading) return <Loader />;
-  return <SectionNews>{newsArr && newsArr.map((news: NewsData) => <News key={news.id} news={news} />)}</SectionNews>;
+const NewsList = (props: NewsListProps) => {
+  if (props.isLoading) return <Loader />;
+  return (
+    <SectionNews>
+      {props.newsArr && props.newsArr.map((news: NewsData) => <News key={news.id} news={news} />)}
+    </SectionNews>
+  );
 };
 
 const SectionNews = styled.section`

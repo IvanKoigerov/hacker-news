@@ -5,7 +5,12 @@ import logo from './icon.svg';
 import styled from 'styled-components';
 import Reload from '../Reload/Reload';
 
-const Header = () => {
+export interface Refetch {
+  refetch?: () => void;
+  handleLoad?: () => void;
+}
+
+const Header = (props: Refetch) => {
   return (
     <HeaderWrapper>
       <Link to="/">
@@ -14,7 +19,7 @@ const Header = () => {
           <h1>FOX NEWS</h1>
         </HeaderLogo>
       </Link>
-      <Reload />
+      <Reload refetch={props.refetch} />
     </HeaderWrapper>
   );
 };
