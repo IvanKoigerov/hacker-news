@@ -2,7 +2,7 @@ import React from 'react';
 import SelectNews from './SelectNews';
 import CommentBox from './CommentBox';
 import Loader from '../Loader/Loader';
-import ErrorPage from '../../page/ErrorPage';
+import Error from '../ErrorPage/Error';
 import { CommentsData } from '../../models/CommentsData';
 
 interface SelectProps {
@@ -16,7 +16,7 @@ const isBadComment = (comment: CommentsData | undefined) => {
 
 const Select = (props: SelectProps) => {
   if (props.isFetching) return <Loader />;
-  if (isBadComment(props.comment)) return <ErrorPage />;
+  if (isBadComment(props.comment)) return <Error />;
   return (
     <>
       <SelectNews news={props.comment} />

@@ -28,8 +28,6 @@ const SelectPage = () => {
     setLoad(false);
   }, [isFetching]);
 
-  //31592934 удалю, когда почти все готово будет
-
   return (
     <>
       <Header refetch={handleLoad} />

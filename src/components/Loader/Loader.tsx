@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Loader = () => {
   return (
     <BoxLoader>
-      <div className="loader"></div>
+      <Load />
     </BoxLoader>
   );
 };
@@ -19,15 +19,15 @@ const BoxLoader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
 
-  .loader {
-    width: 125px;
-    height: 125px;
-    border: 18px solid ${(props) => props.theme.primary};
-    border-radius: 50%;
-    border-top-color: ${(props) => props.theme.common};
-    animation: 0.44s load infinite linear 0s;
-  }
+const Load = styled.div`
+  width: 125px;
+  height: 125px;
+  border: 18px solid ${(props) => props.theme.primary};
+  border-radius: 50%;
+  border-top-color: ${(props) => props.theme.common};
+  animation: 0.44s load infinite linear 0s;
 
   @keyframes load {
     0% {

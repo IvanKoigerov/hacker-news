@@ -7,7 +7,6 @@ import Reload from '../Reload/Reload';
 
 export interface Refetch {
   refetch?: () => void;
-  handleLoad?: () => void;
 }
 
 const Header = (props: Refetch) => {
