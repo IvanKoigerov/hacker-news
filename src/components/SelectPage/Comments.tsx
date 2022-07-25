@@ -32,7 +32,7 @@ const Comments: React.FC<CommentsProps> = ({
       <Comment>
         <CommentHeader>
           <CommentTitle>
-            {comments_count !== 0 ? (
+            {comments_count !== 0 && (
               <OpenComment
                 onClick={() => {
                   handleVisible();
@@ -41,15 +41,15 @@ const Comments: React.FC<CommentsProps> = ({
               >
                 ▼
               </OpenComment>
-            ) : null}
+            )}
             {user}
           </CommentTitle>
           <CommentTitle>{format(date, 'dd.MM.yy HH:mm')}</CommentTitle>
         </CommentHeader>
         <p dangerouslySetInnerHTML={{ __html: content }}></p>
       </Comment>
-      {comments_count &&
-        comments?.length &&
+      {comments_count !== 0 &&
+        comments &&
         comments.map((comment: CommentsData) => (
           <Comments
             className={commentVisible !== undefined ? (commentVisible ? 'show' : 'hide') : 'hidden'}
