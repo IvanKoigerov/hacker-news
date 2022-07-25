@@ -4,20 +4,21 @@ import { WrapperNews } from '../SelectPage/SelectNews';
 import Section from '../Section';
 import Title from '../Title';
 import { Link } from 'react-router-dom';
+import StyledLink from '../StyledLink';
 
 const Error = () => (
   <Section>
     <ErrorBox>
       <Title>Page Not Found</Title>
-      <Link className="link" to="/">
+      <StyledLink as={Link} to="/">
         back to the home page
-      </Link>
+      </StyledLink>
     </ErrorBox>
   </Section>
 );
 
 const ErrorBox = styled(WrapperNews)`
-  .link {
+  ${StyledLink} {
     font-size: 1.6rem;
   }
 `;

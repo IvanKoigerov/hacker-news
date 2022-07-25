@@ -76,19 +76,6 @@ const GlobalStyle = createGlobalStyle`
     margin-top: 0;
   }
 
-  .link {
-    margin-bottom: 10px;
-    color: ${mainTheme.link};
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-
-    &:hover {
-      color: ${mainTheme.linkHover};
-      text-decoration: underline;
-    }
-  }
-
   ::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background-color: ${mainTheme.scroll};

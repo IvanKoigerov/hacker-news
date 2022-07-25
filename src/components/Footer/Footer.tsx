@@ -2,6 +2,7 @@ import github from './github.svg';
 import vk from './vk.svg';
 import tg from './tg.svg';
 import styled from 'styled-components';
+import StyledLink from '../StyledLink';
 
 const Footer = () => {
   return (
@@ -26,9 +27,7 @@ const Footer = () => {
         </FooterItem>
       </FooterList>
 
-      <a href="https://github.com/tastejs/hacker-news-pwas/blob/master/docs/api.md" className="link">
-        API
-      </a>
+      <StyledLink href="https://github.com/tastejs/hacker-news-pwas/blob/master/docs/api.md">API</StyledLink>
 
       <FooterCorp>Copyright © 2022 corp.</FooterCorp>
     </FooterWrapper>

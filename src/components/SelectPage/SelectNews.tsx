@@ -6,6 +6,7 @@ import FooterNews from '../FooterNews';
 import styled from 'styled-components';
 import Title from '../Title';
 import { format } from 'date-fns';
+import StyledLink from '../StyledLink';
 
 interface SelectNewsProps {
   news: CommentsData;
@@ -21,9 +22,9 @@ const SelectNews: React.FC<SelectNewsProps> = ({ news: { user, title, time, poin
         <TextNews dangerouslySetInnerHTML={{ __html: content }}></TextNews>
         <TextNews>
           Link:{' '}
-          <TextNews as="a" className="link" href={url}>
+          <StyledLink as="a" href={url}>
             {url}
-          </TextNews>
+          </StyledLink>
         </TextNews>
         <FooterNews>
           <TextNews>{points} points</TextNews>
