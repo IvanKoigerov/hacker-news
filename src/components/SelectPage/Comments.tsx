@@ -48,16 +48,15 @@ const Comments: React.FC<CommentsProps> = ({
         </CommentHeader>
         <p dangerouslySetInnerHTML={{ __html: content }}></p>
       </Comment>
-      {comments_count !== 0
-        ? comments &&
-          comments.map((comment: CommentsData) => (
-            <Comments
-              className={commentVisible !== undefined ? (commentVisible ? 'show' : 'hide') : 'hidden'}
-              key={comment.id}
-              comment={comment}
-            />
-          ))
-        : null}
+      {comments_count &&
+        comments?.length &&
+        comments.map((comment: CommentsData) => (
+          <Comments
+            className={commentVisible !== undefined ? (commentVisible ? 'show' : 'hide') : 'hidden'}
+            key={comment.id}
+            comment={comment}
+          />
+        ))}
     </CommentBox>
   );
 };
