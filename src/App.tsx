@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-//import './style/App.css';
 import NewsPage from './page/NewsPage';
 import SelectPage from './page/SelectPage';
 import ErrorPage from './page/ErrorPage';
