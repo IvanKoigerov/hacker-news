@@ -1,4 +1,4 @@
-# Hacker News 
+# Hacker News
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -11,6 +11,10 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+## Api
+
+### ссылка на api [HNPWA API](https://github.com/tastejs/hacker-news-pwas/blob/master/docs/api.md)
+
 ## В работе использовалось
 
 ### `typescript`
@@ -21,5 +25,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `Redux Toolkit`
 
-### `React Transition Group`
+### `Docker`
 
+### `date-fns`
+
+## Docker
+
+### `docker build -t koigerov/hacker-news .`
+
+### `docker run -d -p 3000:3000 --name hacker_news koigerov/hacker-news`
+
+### Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
