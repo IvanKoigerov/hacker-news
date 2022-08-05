@@ -9,3 +9,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model News {
+  id Int @id @default (autoincrement())
+  user String
+  time Int
+  points Int
+  title String
+  dead Boolean?
+  deleted Boolean?
+  content String?
+  url String?
+  comments Comments[]
+  comments_count Int?
+}
+
+
+model Comments {
+  id Int @id @default (autoincrement())
+  user String
+  time Int
+  content String
+  dead Boolean?
+  deleted Boolean?
+  news News? @relation(fields: [newsId], references: [id])
+  newsId Int?
+  comments Comments[] @relation(name: "child")
+  parent Comments? @relation( fields: [parentId], references: [id], name: "child")
+  parentId Int?
+  comments_count Int?
+}
