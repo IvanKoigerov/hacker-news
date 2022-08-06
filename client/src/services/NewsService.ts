@@ -18,3 +18,20 @@ export const newsApi = createApi({
     }),
   }),
 });
+
+export const newsLocalApi = createApi({
+  reducerPath: 'NewsPath',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost/api' }),
+  endpoints: (build) => ({
+    fetchAllNews: build.query<NewsData[], number>({
+      query: (list: number) => ({
+        url: '/',
+      }),
+    }),
+    fetchNews: build.query<CommentsData, string>({
+      query: (id: string) => ({
+        url: `item/${id}`,
+      }),
+    }),
+  }),
+});
