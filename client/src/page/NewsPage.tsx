@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NewsList from '../components/NewsPage/NewsList';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
-import useNews from '../hooks/useNews';
 import MainWrapper from '../components/MainWrapper';
+import { newsLocalApi } from '../services/NewsService';
 
 const NewsPage = () => {
-  const { newsArr, isLoading, refetch, isFetching } = useNews();
+  // const { newsArr, isLoading, refetch, isFetching } = useNews();
   const [load, setLoad] = useState(false);
 
+  const { data: news, isLoading: loading } = newsLocalApi.useFetchAllNewsQuery(1);
   const handleLoad = () => {
-    refetch();
+    // refetch();
     setLoad(true);
   };
 
-  useEffect(() => {
-    setLoad(false);
-  }, [isFetching]);
+  // useEffect(() => {
+  //   setLoad(false);
+  // }, [isFetching]);
 
   return (
     <>
       <Header refetch={handleLoad} />
       <MainWrapper>
-        <NewsList newsArr={newsArr!} isLoading={isLoading || (isFetching && load)} />
+        <NewsList newsArr={news!} isLoading={loading} />
+        {/*<NewsList newsArr={newsArr!} isLoading={isLoading || (isFetching && load)} />*/}
       </MainWrapper>
       <Footer />
     </>
