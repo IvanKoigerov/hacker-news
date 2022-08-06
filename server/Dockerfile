@@ -1,9 +1,9 @@
-FROM node:16 as builder
+FROM node:16-alpine
 WORKDIR /app
 COPY package*.json .
-RUN npm i
+RUN npm ci
 COPY . .
-RUN npx prisma migrate dev --name init
+
 EXPOSE 5000
-CMD ["npm", "run", "build"]
+CMD ["npm", "run", "start:prod"]
 

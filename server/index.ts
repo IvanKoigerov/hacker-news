@@ -7,6 +7,7 @@ const PORT = 5000;
 const app = express();
 const prisma = new PrismaClient();
 
+
 app.get('/', async (req, res) => {
     const result = await prisma.news.findMany({
         include: {
