@@ -11,7 +11,7 @@ interface SelectProps {
 }
 
 const isBadComment = (comment: CommentsData | undefined) => {
-  return comment == null || (comment.type !== 'link' && comment.type !== 'poll') || comment.dead || comment.deleted;
+  return comment == null || comment.dead || comment.deleted;
 };
 
 const Select = (props: SelectProps) => {
