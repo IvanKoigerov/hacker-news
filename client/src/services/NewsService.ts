@@ -21,10 +21,10 @@ export const newsApi = createApi({
 
 export const newsLocalApi = createApi({
   reducerPath: 'NewsPath',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL }),
   endpoints: (build) => ({
     fetchAllNews: build.query<NewsData[], number>({
-      query: (list: number) => ({
+      query: () => ({
         url: '/',
       }),
     }),
