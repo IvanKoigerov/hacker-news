@@ -121,3 +121,6 @@ dist
 
 # Sonar
 .idea/sonarlint
+
+# dotenv environment variables file
+.env
