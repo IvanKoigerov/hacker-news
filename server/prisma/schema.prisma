@@ -20,7 +20,7 @@ model News {
   content String?
   url String?
   comments Comments[]
-  comments_count Int?
+  comments_count Int? @default(0)
 }
 
 
@@ -36,5 +36,5 @@ model Comments {
   comments Comments[] @relation(name: "child")
   parent Comments? @relation( fields: [parentId], references: [id], name: "child")
   parentId Int?
-  comments_count Int?
+  comments_count Int? @default(0)
 }
