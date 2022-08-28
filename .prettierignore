@@ -1,9 +1,9 @@
 # Build artifacts
 /node_modules
 /dist
-/src/types/**/*.json
-/src/types/**/*.yaml
-/public
+/client/src/types/**/*.json
+/client/src/types/**/*.yaml
+/client/public
 
 # CI code
 /jenkins

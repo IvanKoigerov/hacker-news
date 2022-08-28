@@ -1,3 +1,4 @@
+import React from 'react';
 import github from './github.svg';
 import vk from './vk.svg';
 import tg from './tg.svg';
